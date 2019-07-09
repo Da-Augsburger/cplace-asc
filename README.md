@@ -95,6 +95,20 @@ $ cplace-asc --help
 ### TypeScript
 For each plugin there must be one main entry file `assets/ts/app.ts` which will be used as entry point for bundling. As such any other source file must be imported (transitively) by that file.
 
+#### Defining additional typings
+By default the assets compiler generates a `tsconfig.json` with predefined references to typings of other plugins as well as additional basic types included in the `cf.cplace.platform` plugin. A plugin can define its own _additional_ typings by placing an `extra-types.json` file into the `assets/ts` directory. The content has the following structure:
+
+```json
+{
+  "definitions": [
+    "<local path to .d.ts file>",
+    ...
+  ]
+}
+```
+
+The given local paths will be resolved relative to the `assets/ts` directory.
+
 ### LESS
 For each plugin there must be one main entry file: either `assets/less/plugin.less` *or* `assets/less/cplace.less`. The generated CSS file will be called `assets/generated_css/plugin.css` *or* `assets/generated_css/cplace.css` respectively.
 
